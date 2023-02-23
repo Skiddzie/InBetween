@@ -1,12 +1,12 @@
 import React from 'react'
-import coverImage from "../../assets/cover/cover-image.jpg";
+import coverImage from "../../assets/cover/cover-image.png";
 
-function About() {
+function Main() {
 
   return (
     <section className="my-5" >
-      <h1 id="about">InBetween</h1>
-      <img src={coverImage} className="my-2" style={{ width: "100%" }} alt="cover" />
+      {/* <h1 id="about">InBetween</h1> */}
+      <img src={coverImage} className="my-2" style={{ width: "50%" }} alt="cover" />
       <div className="my-2">
         <p>
           select two or more cities and then find the midway point
@@ -16,4 +16,4 @@ function About() {
   )
 }
 
-export default About
+export default Main

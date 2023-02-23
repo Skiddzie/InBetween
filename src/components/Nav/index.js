@@ -26,7 +26,7 @@ function Nav(props) {
           <li className={`mx-2 ${navTab === "aboutMe" && "navActive"}`}>
           <a data-testid="about" href="#about" onClick={() => 
           setNavTab("aboutMe")}>
-              About me
+              Home
             </a>
           </li>
           <li className={`mx-2 ${navTab === "contact" && "navActive"}`}>

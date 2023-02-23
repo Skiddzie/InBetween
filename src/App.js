@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Nav from './components/Nav';
-import About from './components/About';
+import Main from './components/Main';
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 import Resume from './components/Resume';
@@ -28,7 +28,7 @@ function App() {
     switch(navTab) {
       case "aboutMe":
         console.log("ding")
-        return <About/>
+        return <Main/>
       case "contact":
         return <ContactForm/>
       case "projects":
