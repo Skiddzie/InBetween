@@ -1,6 +1,6 @@
 import React from 'react'
 import coverImage from "../../assets/cover/cover-image.png";
-
+import AddBox from '../AddBox/AddBox';
 function Main() {
 
   return (
@@ -12,6 +12,7 @@ function Main() {
           select two or more cities and then find the midway point
         </p>
       </div>
+      <AddBox></AddBox>
     </section>
   )
 }

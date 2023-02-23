@@ -4,6 +4,7 @@ import Main from './components/Main';
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 import Resume from './components/Resume';
+// import AddBox from './components/AddBox/AddBox';
 
 function App() {
   const [contactSelected, setContactSelected] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         {switchTab()}
       </main>
     </div>
+    
   );
 }
 export default App;
