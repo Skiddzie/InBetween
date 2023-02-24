@@ -10,7 +10,7 @@ function App() {
   const [contactSelected, setContactSelected] = useState(false);
   const [aboutSelected, setAboutSelected] = useState(false);
   const [navTab, setNavTab] = useState("aboutMe");
-  console.log(contactSelected, " ", setContactSelected)
+  // console.log(contactSelected, " ", setContactSelected)
   // const [categories] = useState([
   //   {
   //     name: 'About Me',
@@ -28,7 +28,7 @@ function App() {
   function switchTab() {
     switch(navTab) {
       case "aboutMe":
-        console.log("ding")
+        // console.log("ding")
         return <Main/>
       case "contact":
         return <ContactForm/>

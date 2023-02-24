@@ -1,20 +1,63 @@
 import React, { useState} from "react";
 function AddBox(){
-    const [val,setVal]=useState([]);
-    const handleAdd=()=>{
-        const abc=[...val,[]]
-        setVal(abc)
+    const [formFields, setFormFields] = useState([
+        {name: '', age: ''},
+    ])
+
+    const handleFormChange = (event, index) => {
+        console.log(index, event.target.name)
+        let data = [...formFields];
+        data[index][event.target.name] = event.target.value;
+        setFormFields(data);
     }
-    const handleChange=()=>{}
+
+    const submit = (e) => {
+        e.preventDefault();
+        console.log(formFields, " yippee")
+    }
+
+    const addFields = () => {
+        let object = {
+            name: '',
+            age: ''
+        }
+
+        setFormFields([...formFields, object])
+    }
+
+    const removeFields = (index) => {
+        let data = [...formFields];
+        data.splice(index, 1)
+        setFormFields(data)
+    }
 return(
-    <>
-    <button onClick={()=>handleAdd()}>Add Location</button>
-        {val.map((data,i)=>{
-            return(
-                <input oNchange={e=>handleChange(e,i)}/>
-            )
+    <div className="App">
+        <form onSubmit={submit}>
+        {formFields.map((form, index) =>{
+        return(
+            <div key={index}>
+            <input
+                name='name'
+                placeholder='Name'
+                onChange={event => handleFormChange(event, index)}
+                value={form.name}
+            />
+            <input
+                name='age'
+                placeholder='Age'
+                onChange={event => handleFormChange(event, index)}
+                value={form.age}
+            />
+            <button onClick={() => removeFields(index)}>X</button>
+        </div>
+        )
         })}
-    </>
+        </form>
+
+        <button onClick={addFields}>Add More..</button>
+        <br/>
+        <button onClick={submit}>Submit</button>
+    </div>
 )
 }
 export default AddBox;
