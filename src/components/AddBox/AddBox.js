@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 function AddBox(){
     const [formFields, setFormFields] = useState([
-        {name: '', age: ''},
+        {latitude: '', longitude: ''},
     ])
 
     const handleFormChange = (event, index) => {
@@ -18,8 +18,8 @@ function AddBox(){
 
     const addFields = () => {
         let object = {
-            name: '',
-            age: ''
+            latitude: '',
+            longitude: ''
         }
 
         setFormFields([...formFields, object])
@@ -37,16 +37,16 @@ return(
         return(
             <div key={index}>
             <input
-                name='name'
-                placeholder='Name'
+                name='latitude'
+                placeholder='latitude'
                 onChange={event => handleFormChange(event, index)}
-                value={form.name}
+                value={form.latitude}
             />
             <input
-                name='age'
-                placeholder='Age'
+                name='longitude'
+                placeholder='longitude'
                 onChange={event => handleFormChange(event, index)}
-                value={form.age}
+                value={form.longitude}
             />
             <button onClick={() => removeFields(index)}>X</button>
         </div>
