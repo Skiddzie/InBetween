@@ -1,4 +1,14 @@
 import React, { useState} from "react";
+
+// function AveragePoint(points){
+//     for (let i = 0, len = points.length, text = ""; i < len; i++) {
+//         text += cars[i] + "<br>";
+//       } 
+// }
+var holder = [];
+const compile = () =>{
+    console.log(holder);
+}
 function AddBox(){
     const [formFields, setFormFields] = useState([
         {latitude: '', longitude: ''},
@@ -14,6 +24,7 @@ function AddBox(){
     const submit = (e) => {
         e.preventDefault();
         console.log(formFields, " yippee")
+        holder = formFields
     }
 
     const addFields = () => {
@@ -56,7 +67,10 @@ return(
 
         <button onClick={addFields}>Add More..</button>
         <br/>
-        <button onClick={submit}>Submit</button>
+        <button onClick={() => {
+            submit(window.event);
+            compile();
+        }}>Submit</button>
     </div>
 )
 }
