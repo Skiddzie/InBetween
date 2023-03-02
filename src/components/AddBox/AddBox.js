@@ -30,13 +30,13 @@ function AddBox(){
         setFormFields(data);
     }
 
-    const submit = (e) => {
+    const submitCoord = (e) => {
         e.preventDefault();
-        console.log(formFields, " yippee")
         holder = formFields
     }
 
     const addFields = () => {
+        window.event.preventDefault();
         let object = {
             latitude: '',
             longitude: ''
@@ -52,7 +52,12 @@ function AddBox(){
     }
 return(
     <div className="App">
-        <form onSubmit={submit}>
+        <button onClick={addFields}>Add More..</button>
+        <br/>
+        <form onSubmit={() => {
+            // submitCoord(window.event);
+            compile();
+        }}>
         {formFields.map((form, index) =>{
         return(
             <div key={index}>
@@ -68,18 +73,15 @@ return(
                 onChange={event => handleFormChange(event, index)}
                 value={form.longitude}
             />
-            <button onClick={() => removeFields(index)}>X</button>
+            <button type="button" onClick={() => removeFields(index)}>X</button>
         </div>
         )
         })}
-        </form>
-
-        <button onClick={addFields}>Add More..</button>
-        <br/>
         <button onClick={() => {
-            submit(window.event);
+            submitCoord(window.event);
             compile();
         }}>Submit</button>
+        </form>
     </div>
 )
 }
