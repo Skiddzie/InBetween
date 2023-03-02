@@ -7,7 +7,16 @@ import React, { useState} from "react";
 // }
 var holder = [];
 const compile = () =>{
-    console.log(holder);
+    let lat = 0;
+    let lon = 0;
+    for (let i = 0; i < holder.length; i++) {
+        console.log(holder[i].latitude);
+        lat += Number(holder[i].latitude);
+        lon += Number(holder[i].longitude);
+      } 
+    lat = lat/holder.length;
+    lon = lon/holder.length;
+    console.log("lattitude: ", lat, " longitude: ", lon);
 }
 function AddBox(){
     const [formFields, setFormFields] = useState([
