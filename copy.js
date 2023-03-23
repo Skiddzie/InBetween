@@ -8,55 +8,33 @@ Geocode.setApiKey("AIzaSyBcl3VjVi9proDuHUMVBuAJW6jKPTU9Yds");
 Geocode.setLanguage("en");
 
 const converter = (location) =>{
-    Geocode.fromAddress(location).then(
+    Geocode.fromAddress("Bound Brook NJ").then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location;
-        //   console.log('ding')
-        //   console.log(lat, lng);
-            const foo = {lat, lng}
-            // console.log(foo)
-          return(foo)
+          console.log('ding')
+          console.log(lat, lng);
         },
         (error) => {
           console.error(error);
         }
       );
 }
-
 var holder = [];
-const compile = async () => {
-    let latitude = 0;
-    let longitude = 0;
+const compile = () =>{
+    let lat = 0;
+    let lon = 0;
     for (let i = 0; i < holder.length; i++) {
-        const response = await Geocode.fromAddress(holder[i].city);
-        const { lat, lng } = response.results[0].geometry.location;
-        const foo = {lat, lng}
-        longitude += Number(foo.lng);
-        console.log(longitude)
-        latitude += Number(foo.lat);
-        console.log(latitude)
-    } 
-    // console.log("lat: " + latitude)
-    latitude = latitude/holder.length;
-    longitude = longitude/holder.length;
-    console.log("lattitude: ", latitude, " longitude: ", longitude);
-    const coordinates = document.getElementById("coordinates");
-    coordinates.textContent = latitude + " " + longitude;
-
-    Geocode.fromLatLng(latitude, longitude).then(
-        (response) => {
-          const address = response.results[0].formatted_address;
-          const city = document.getElementById("city");
-          city.textContent = address;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-};
+        console.log(holder[i].latitude);
+        lat += Number(holder[i].latitude);
+        lon += Number(holder[i].longitude);
+      } 
+    lat = lat/holder.length;
+    lon = lon/holder.length;
+    console.log("lattitude: ", lat, " longitude: ", lon);
+}
 function AddBox(){
     const [formFields, setFormFields] = useState([
-        {city: ''},
+        {latitude: '', longitude: ''},
     ])
 
     const handleFormChange = (event, index) => {
@@ -74,7 +52,8 @@ function AddBox(){
     const addFields = () => {
         window.event.preventDefault();
         let object = {
-            city: '',
+            latitude: '',
+            longitude: ''
         }
 
         setFormFields([...formFields, object])
@@ -97,17 +76,17 @@ return(
         return(
             <div key={index}>
             <input
-                name='city'
-                placeholder='city'
+                name='latitude'
+                placeholder='latitude'
                 onChange={event => handleFormChange(event, index)}
-                value={form.city}
+                value={form.latitude}
             />
-            {/* <input
+            <input
                 name='longitude'
                 placeholder='longitude'
                 onChange={event => handleFormChange(event, index)}
                 value={form.longitude}
-            /> */}
+            />
             <button type="button" onClick={() => removeFields(index)}>X</button>
         </div>
         )
@@ -117,10 +96,6 @@ return(
             compile();
         }}>Submit</button>
         </form>
-        <div className="result">
-            <h2 id="city">City</h2>
-            <h3 id="coordinates">0.0 0.0</h3>
-        </div>
     </div>
 )
 }
