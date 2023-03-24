@@ -42,16 +42,31 @@ const compile = async () => {
     console.log("lattitude: ", latitude, " longitude: ", longitude);
     const coordinates = document.getElementById("coordinates");
     coordinates.textContent = latitude + " " + longitude;
-
+    let city, state, country;
     Geocode.fromLatLng(latitude, longitude).then(
         (response) => {
-          const address = response.results[0].formatted_address;
-          const city = document.getElementById("city");
-          city.textContent = address;
-        },
-        (error) => {
-          console.error(error);
-        }
+            for (let i = 0; i < response.results[0].address_components.length; i++) {
+              for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+                switch (response.results[0].address_components[i].types[j]) {
+                  case "locality":
+                    city = response.results[0].address_components[i].long_name;
+                    break;
+                  case "administrative_area_level_1":
+                    state = response.results[0].address_components[i].long_name;
+                    break;
+                  case "country":
+                    country = response.results[0].address_components[i].long_name;
+                    break;
+                }
+              }
+            }
+            console.log(city, state, country);
+            const cityresult = document.getElementById("city");
+            cityresult.textContent = city + ", " + state + ", " + country;
+          },
+          (error) => {
+            console.error(error);
+          }
       );
 };
 function AddBox(){
